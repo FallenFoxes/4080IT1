@@ -10,21 +10,36 @@ public class LobbyManager : NetworkBehaviour
     public TMPro.TMP_Text statusLabel;
     void Start()
     {
-        startButton.gameObject.SetActive(false);
-        statusLabel.text = "Start Something, like the server or the host or the client.";
-
         NetworkManager.OnClientStarted += OnClientStarted;
         NetworkManager.OnServerStarted += OnServerStarted;
+        startButton.onClick.AddListener(OnStartButtonCLicked);
+
+        startButton.gameObject.SetActive(false);
+        statusLabel.text = "Start Client/Host/Server";
     }
 
-    private void OnServerStarted(){
-        startButton.gameObject.SetActive(true);
-        statusLabel.text = "Press Start";
-    }
-
-    private void OnClientStarted(){
+     private void OnClientStarted(){
         if (!IsHost){
             statusLabel.text = "Waiting for game to start";
         }
+    }
+
+    private void OnServerStarted(){
+        StartGame();
+       // startButton.gameObject.SetActive(true);
+        //statusLabel.text = "Press Start";
+    }
+
+
+    private void OnStartButtonCLicked()
+    {
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        NetworkManager.SceneManager.LoadScene(
+            "TestChat",
+            UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

@@ -813,6 +813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796d990f39bd3744f976cf6c3a13323b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 1818805848}
+  statusLabel: {fileID: 2068946282}
 --- !u!1 &1483537081
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +877,8 @@ MonoBehaviour:
     NetworkTransport: {fileID: 1483537082}
     PlayerPrefab: {fileID: 0}
     Prefabs:
-      NetworkPrefabsLists: []
+      NetworkPrefabsLists:
+      - {fileID: 11400000, guid: bb7471ee050148b4cbd48617fdcfe444, type: 2}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0

@@ -25,6 +25,15 @@ public class Arena1Game : NetworkBehaviour
         Color.magenta,
     };
 
+    private int WrapInt(int curValue, int increment, int max)
+    {
+        int toReturn = curValue + increment;
+        if(toReturn > max){
+            toReturn = 0;
+        }
+        return toReturn;
+    }
+
     void Start()
     {
         arenaCamera.enabled = !IsClient;
@@ -55,9 +64,16 @@ public class Arena1Game : NetworkBehaviour
 
     private void SpawnPlayers()
     {
-        foreach(ulong clientId in NetworkManager.ConnectedClientsIds)
-        {
-            Player playerSpawn = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        foreach(ulong clientId in NetworkManager.ConnectedClientsIds){
+            Player prefab = playerPrefab;
+            if(clientId == NetworkManager.LocalClientId){
+                prefab = playerPrefab;
+            }
+
+            Player playerSpawn = Instantiate(
+                prefab,
+                NextPosition(),
+                Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
             playerSpawn.playerColorNetVar.Value = NextColor();
         }

@@ -39,7 +39,7 @@ public class NetworkHandler : NetworkBehaviour
     {
         Debug.Log("!! Client Started !!");
         NetworkManager.OnClientConnectedCallback += ClientOnClientConnected;
-        NetworkManager.OnClientDisconnectedCallback += ClientOnClientDisconnected;
+        NetworkManager.OnClientDisconnectCallback += ClientOnClientDisconnect;
         NetworkManager.OnClientStopped += ClientOnClientStopped;
         PrintMe();
 
@@ -53,7 +53,7 @@ public class NetworkHandler : NetworkBehaviour
         PrintMe();
     }
 
-    private void ClientOnClientDisconnected(ulong clientId)
+    private void ClientOnClientDisconnect(ulong clientId)
     {
 
     }
@@ -63,7 +63,7 @@ public class NetworkHandler : NetworkBehaviour
         Debug.Log("!! Client Stopped !!");
         hasPrinted = false;
         NetworkManager.OnClientConnectedCallback -= ClientOnClientConnected;
-        NetworkManager.OnClientDisconnectedCallback -= ClientOnClientDisconnected;
+        NetworkManager.OnClientDisconnectCallback -= ClientOnClientDisconnect;
         NetworkManager.OnClientStopped -= ClientOnClientStopped;
     }
 
@@ -75,7 +75,7 @@ public class NetworkHandler : NetworkBehaviour
     {
         Debug.Log("!! Server Started !!");
         NetworkManager.OnClientConnectedCallback += ServerOnClientConnected;
-        NetworkManager.OnClientDisconnectedCallback += ServerOnClientDisconnected;
+        NetworkManager.OnClientDisconnectCallback += ServerOnClientDisconnect;
         NetworkManager.OnServerStopped += ServerOnServerStopped;
         PrintMe();
     }
@@ -85,7 +85,7 @@ public class NetworkHandler : NetworkBehaviour
         Debug.Log($"Client {clientId} connected to the server");
     }
 
-     private void ServerOnClientDisconnected(ulong clientId)
+     private void ServerOnClientDisconnect(ulong clientId)
     {
          Debug.Log($"Client {clientId} disconnected from the server");
 
@@ -96,7 +96,7 @@ public class NetworkHandler : NetworkBehaviour
         Debug.Log("!! Server Stopped !!");
         hasPrinted = false;
         NetworkManager.OnClientConnectedCallback -= ServerOnClientConnected;
-        NetworkManager.OnClientDisconnectedCallback -= ServerOnClientDisconnected;
+        NetworkManager.OnClientDisconnectCallback -= ServerOnClientDisconnect;
         NetworkManager.OnServerStopped -= ServerOnServerStopped;
     }
 }
