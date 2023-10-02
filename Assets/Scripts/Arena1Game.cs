@@ -8,6 +8,14 @@ public class Arena1Game : NetworkBehaviour
     public Player playerPrefab;
     public Camera arenaCamera;
 
+    private int colorIndex = 0;
+    private Color[] playerColors = new Color[] {
+        Color.blue,
+        Color.green,
+        Color.yellow,
+        Color.magenta,
+    };
+
     private int positionIndex = 0;
     private Vector3[] startPositions = new Vector3[]
     {
@@ -15,14 +23,6 @@ public class Arena1Game : NetworkBehaviour
         new Vector3(-2, 2, 0),
         new Vector3(0, 2, 4),
         new Vector3(0, 2, -4)
-    };
-
-    private int colorIndex = 0;
-    private Color[] playerColors = new Color[] {
-        Color.blue,
-        Color.green,
-        Color.yellow,
-        Color.magenta,
     };
 
     private int WrapInt(int curValue, int increment, int max)
@@ -75,7 +75,7 @@ public class Arena1Game : NetworkBehaviour
                 NextPosition(),
                 Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-            playerSpawn.playerColorNetVar.Value = NextColor();
+            playerSpawn.PlayerColor.Value = NextColor();
         }
     }
 }
