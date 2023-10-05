@@ -41,6 +41,9 @@ public class Player : NetworkBehaviour
          void Update() {
         if (IsOwner) {
             OwnerHandleMovementInput();
+            if (Input.GetButtonDown("Fire1")) {
+                FireServerRpc();
+            }
         }
     }
 
@@ -53,6 +56,12 @@ public class Player : NetworkBehaviour
     {
         transform.Translate(posChange, Space.World);
         transform.Rotate(rotChange);
+    }
+
+    [ServerRpc]
+    private void FireServerRpc()
+    {
+        NetworkHelper.Log("Fire");
     }
 
     // Rotate around the y-axis when shift isn't pressed

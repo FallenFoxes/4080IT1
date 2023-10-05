@@ -17,7 +17,7 @@ public class NetworkHelper : MonoBehaviour {
 
     private static void RunningControls() {
         string transportTypeName = netMgr.NetworkConfig.NetworkTransport.GetType().Name;
-        UnityTransport transport = netMgr.GetComponent();
+        UnityTransport transport = netMgr.GetComponent<UnityTransport>();
         string serverPort = "?";
         if (transport != null) {
             serverPort = $"{transport.ConnectionData.Address}:{transport.ConnectionData.Port}";
