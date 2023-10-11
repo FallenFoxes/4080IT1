@@ -5,17 +5,20 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         if (Application.isEditor){
-            } else {
-            //Turns off the stack trace for  Debug.Log to cut down on log noise
-            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
-            }
         }
+        else
+        {
+            //Turn off stack trace for debug.log
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+        }
+    }
 
-
-
-    private void OnGUI(){
+    private void OnGUI()
+    {
         NetworkHelper.GUILayoutNetworkControls();
     }
+
 }

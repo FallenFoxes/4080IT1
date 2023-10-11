@@ -5,16 +5,9 @@ using Unity.Netcode;
 
 public class Arena1Game : NetworkBehaviour
 {
-    public Player playerPrefab;
+    public Player hostPrefab;
+    public Player clientPrefab;
     public Camera arenaCamera;
-
-    private int colorIndex = 0;
-    private Color[] playerColors = new Color[] {
-        Color.blue,
-        Color.green,
-        Color.yellow,
-        Color.magenta,
-    };
 
     private int positionIndex = 0;
     private Vector3[] startPositions = new Vector3[]
@@ -25,57 +18,62 @@ public class Arena1Game : NetworkBehaviour
         new Vector3(0, 2, -4)
     };
 
-    private int WrapInt(int curValue, int increment, int max)
-    {
-        int toReturn = curValue + increment;
-        if(toReturn > max){
-            toReturn = 0;
-        }
-        return toReturn;
-    }
+    private int colorIndex = 0;
+    private Color[] playerColors = new Color[] {
+        Color.blue,
+        Color.green,
+        Color.yellow,
+        Color.magenta,
+    };
 
+    // Start is called before the first frame update
     void Start()
     {
         arenaCamera.enabled = !IsClient;
         arenaCamera.GetComponent<AudioListener>().enabled = !IsClient;
-        if(IsServer)
+        if (IsServer)
         {
-        SpawnPlayers();
+            SpawnPlayers();
         }
     }
-
-    private Vector3 NextPosition() {
+        
+    private Vector3 NextPosition()
+    {
         Vector3 pos = startPositions[positionIndex];
         positionIndex += 1;
-        if (positionIndex > startPositions.Length - 1) {
+        if (positionIndex > startPositions.Length - 1)
+        {
             positionIndex = 0;
         }
         return pos;
     }
 
-    private Color NextColor(){
+
+    private Color NextColor()
+    {
         Color newColor = playerColors[colorIndex];
         colorIndex += 1;
-        if(colorIndex > playerColors.Length -1) {
+        if (colorIndex > playerColors.Length - 1)
+        {
             colorIndex = 0;
         }
         return newColor;
     }
 
+
     private void SpawnPlayers()
     {
-        foreach(ulong clientId in NetworkManager.ConnectedClientsIds){
-            Player prefab = playerPrefab;
-            if(clientId == NetworkManager.LocalClientId){
-                prefab = playerPrefab;
+        foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
+        {
+            Player playerPrefabToSpawn = clientPrefab;
+            if (NetworkManager.LocalClientId == clientId)
+            {
+                playerPrefabToSpawn = hostPrefab;
             }
 
-            Player playerSpawn = Instantiate(
-                prefab,
-                NextPosition(),
-                Quaternion.identity);
+                Player playerSpawn = Instantiate(playerPrefabToSpawn, NextPosition(), Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-            playerSpawn.PlayerColor.Value = NextColor();
+            playerSpawn.playerColorNetVar.Value = NextColor();
         }
     }
 }
