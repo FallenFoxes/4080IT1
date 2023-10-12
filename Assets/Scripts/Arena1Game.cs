@@ -26,7 +26,6 @@ public class Arena1Game : NetworkBehaviour
         Color.magenta,
     };
 
-    // Start is called before the first frame update
     void Start()
     {
         arenaCamera.enabled = !IsClient;
@@ -72,8 +71,8 @@ public class Arena1Game : NetworkBehaviour
             }
 
                 Player playerSpawn = Instantiate(playerPrefabToSpawn, NextPosition(), Quaternion.identity);
-            playerSpawn.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-            playerSpawn.playerColorNetVar.Value = NextColor();
+            playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            playerSpawn.PlayerColor.Value = NextColor();
         }
     }
 }
