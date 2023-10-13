@@ -105,7 +105,7 @@ public class Player : NetworkBehaviour
             newPosition.x = Mathf.Clamp(newPosition.x, -8f, 8f);
             newPosition.z = Mathf.Clamp(newPosition.z, -8f, 8f);
             
-            MoveServerRpc(newPosition - transform.position, rotation);
+            MoveServerRpc(movement, rotation);
         }
     }
 

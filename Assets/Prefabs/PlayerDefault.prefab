@@ -100,10 +100,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8884e478736ca48864d49c30d390fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
-  rotationSpeed: 130
-  playerColorNetVar:
+  PlayerColor:
     m_InternalValue: {r: 1, g: 0, b: 0, a: 1}
+  ScoreNetVar:
+    m_InternalValue: 0
+  bulletSpawner: {fileID: 0}
+  movementSpeed: 50
 --- !u!54 &7888419985320281115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,7 +146,7 @@ GameObject:
   - component: {fileID: 739134849117854534}
   m_Layer: 0
   m_Name: BulletSpawner
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

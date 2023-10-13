@@ -6,20 +6,7 @@ using UnityEngine;
 
 public class NetworkHelper : MonoBehaviour
 {
-    private static NetworkManager netMgr;
-
-    private void Awake()
-    {
-        netMgr = NetworkManager.Singleton;
-        if(netMgr != null)
-        {
-            NetworkHelper.Log("NetworkMananger initialized successfully.");
-        }
-        else
-        {
-            Debug.LogError("NetworkManager is not properly initialized.");
-        }
-    }
+    private static NetworkManager netMgr = NetworkManager.Singleton;
     private static void StartButtons()
     {
         if (GUILayout.Button("Host")) netMgr.StartHost();
