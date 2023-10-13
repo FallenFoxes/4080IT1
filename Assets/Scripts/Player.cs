@@ -32,6 +32,13 @@ public class Player : NetworkBehaviour
         }
     }
 
+        private void ApplyPlayerColor()
+        {
+            if (playerBody != null)
+            {
+                playerBody.GetComponent<Renderer>().material.color = PlayerColor.Value;
+            }
+        }
     private void Awake()
     {
         NetworkHelper.Log(this, "Awake");
@@ -50,7 +57,7 @@ public class Player : NetworkBehaviour
 
     void Update() {
         if (IsOwner) {
-            OwnerHandleMovementInput();
+            OwnerHandleInput();
             if (Input.GetButtonDown("Fire1")) {
                 NetworkHelper.Log("Requesting Fire");
                 bulletSpawner.FireServerRpc();
@@ -88,9 +95,17 @@ public class Player : NetworkBehaviour
         Vector3 movement = CalcMovement();
         Vector3 rotation = CalcRotation();
 
-        if (movement != Vector3.zero || rotation != Vector3.zero)
+        if (IsHost)
         {
-            MoveServerRPC(movement, rotation);
+            MoveServerRpc(movement, rotation);
+        }
+        else
+        {
+            Vector3 newPosition = transform.position + movement;
+            newPosition.x = Mathf.Clamp(newPosition.x, -8f, 8f);
+            newPosition.z = Mathf.Clamp(newPosition.z, -8f, 8f);
+            
+            MoveServerRpc(newPosition - transform.position, rotation);
         }
     }
 

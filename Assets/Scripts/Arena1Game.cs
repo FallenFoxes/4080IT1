@@ -5,7 +5,7 @@ using Unity.Netcode;
 
 public class Arena1Game : NetworkBehaviour
 {
-    public Player playerPrefab;
+    public Player clientPrefab;
     public Player playerHost;
     public Camera arenaCamera;
 
@@ -67,7 +67,7 @@ public class Arena1Game : NetworkBehaviour
             Player playerPrefabToSpawn = clientPrefab;
             if (NetworkManager.LocalClientId == clientId)
             {
-                playerPrefabToSpawn = hostPrefab;
+                playerPrefabToSpawn = playerHost;
             }
 
                 Player playerSpawn = Instantiate(

@@ -6,7 +6,20 @@ using UnityEngine;
 
 public class NetworkHelper : MonoBehaviour
 {
-    private static NetworkManager netMgr = NetworkManager.Singleton;
+    private static NetworkManager netMgr;
+
+    private void Awake()
+    {
+        netMgr = NetworkManager.Singleton;
+        if(netMgr != null)
+        {
+            NetworkHelper.Log("NetworkMananger initialized successfully.");
+        }
+        else
+        {
+            Debug.LogError("NetworkManager is not properly initialized.");
+        }
+    }
     private static void StartButtons()
     {
         if (GUILayout.Button("Host")) netMgr.StartHost();
@@ -66,7 +79,14 @@ public class NetworkHelper : MonoBehaviour
 
     public static void Log(string msg)
     {
+        if (netMgr != null)
+        {
         Debug.Log($"[{GetNetworkMode()} {netMgr.LocalClientId}]: {msg}");
+        }
+        else
+        {
+            Debug.Log($"[NetworkManager not initialized]: {msg}");
+        }
     }
 
     public static void Log(NetworkBehaviour what, string msg)
