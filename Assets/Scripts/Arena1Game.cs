@@ -5,8 +5,8 @@ using Unity.Netcode;
 
 public class Arena1Game : NetworkBehaviour
 {
-    public Player hostPrefab;
-    public Player clientPrefab;
+    public Player playerPrefab;
+    public Player playerHost;
     public Camera arenaCamera;
 
     private int positionIndex = 0;
@@ -70,7 +70,10 @@ public class Arena1Game : NetworkBehaviour
                 playerPrefabToSpawn = hostPrefab;
             }
 
-                Player playerSpawn = Instantiate(playerPrefabToSpawn, NextPosition(), Quaternion.identity);
+                Player playerSpawn = Instantiate(
+                    playerPrefabToSpawn, 
+                    NextPosition(), 
+                    Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             playerSpawn.PlayerColor.Value = NextColor();
         }

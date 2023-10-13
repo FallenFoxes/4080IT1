@@ -18,23 +18,23 @@ public class NetworkHandler : NetworkBehaviour
     {
         if (IsServer)
         {
-            NetworkHelper.Log($"I AM a Server! {NetworkManager.ServerClientId}");
+            NetworkHelper.Log($"I am a Server! {NetworkManager.ServerClientId}");
         }
         if (IsHost)
         {
-            NetworkHelper.Log($"I AM a Host! {NetworkManager.ServerClientId}/{NetworkManager.LocalClientId}");
+            NetworkHelper.Log($"I am a Host! {NetworkManager.ServerClientId}/{NetworkManager.LocalClientId}");
         }
         if (IsClient)
         {
-            NetworkHelper.Log($"I AM a Client! {NetworkManager.LocalClientId}");
+            NetworkHelper.Log($"I am a Client! {NetworkManager.LocalClientId}");
         }
         if (!IsServer && !IsClient)
         {
-            NetworkHelper.Log("I AM Nothing yet");
+            NetworkHelper.Log("I am Nothing yet");
         }
     }
 
-    //Client Actions
+    // Client Actions //
 
     private void OnClientStarted()
     {
@@ -61,7 +61,7 @@ public class NetworkHandler : NetworkBehaviour
         NetworkHelper.Log($"I have disconnected {clientId}");
     }
 
-    // Server Actions
+    // Server Actions //
 
     private void OnServerStarted()
     {
@@ -86,7 +86,5 @@ public class NetworkHandler : NetworkBehaviour
     private void ServerOnClientDisconnected(ulong clientId)
     {
         NetworkHelper.Log($"Client {clientId} disconnected to the server");
-    }
-
-    
+    } 
 }

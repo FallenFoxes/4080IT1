@@ -24,16 +24,28 @@ public class Player : NetworkBehaviour
         playerCamera.enabled = IsOwner;
         playerCamera.GetComponent<AudioListener>().enabled = IsOwner;
 
-        PlayerColor.OnValueChanged += OnPlayerColorChanged;
         ApplyPlayerColor();
+        PlayerColor.OnValueChanged += OnPlayerColorChanged;
 
         if (IsClient) {
             ScoreNetVar.OnValueChanged += ClientOnScoreValueChanged;
         }
     }
 
+    private void Awake()
+    {
+        NetworkHelper.Log(this, "Awake");
+    }
+
     void Start() {
         NetworkHelper.Log(this, "Start");
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        NetworkHelper.Log(this, "OnNetworkSpawn");
+        NetworkInit();
+        base.OnNetworkSpawn();
     }
 
     void Update() {
@@ -64,12 +76,6 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public override void OnNetworkSpawn()
-    {
-        NetworkHelper.Log(this, "OnNetworkSpawn");
-        NetworkInit();
-        base.OnNetworkSpawn();
-    }
 
     private void ClientOnScoreValueChanged(int old, int current) {
         if (IsOwner){
@@ -77,15 +83,27 @@ public class Player : NetworkBehaviour
         }
     }
 
+    private void OwnerHandleInput()
+    {
+        Vector3 movement = CalcMovement();
+        Vector3 rotation = CalcRotation();
+
+        if (movement != Vector3.zero || rotation != Vector3.zero)
+        {
+            MoveServerRPC(movement, rotation);
+        }
+    }
+
     public void OnPlayerColorChanged(Color previous, Color current) {
         ApplyPlayerColor();
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = true)]
     private void MoveServerRpc(Vector3 posChange, Vector3 rotChange) {
         transform.Translate(posChange);
         transform.Rotate(rotChange);
     }
+
     private Vector3 CalcRotation() {
         bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         Vector3 rotVect = Vector3.zero;
@@ -93,5 +111,23 @@ public class Player : NetworkBehaviour
             rotVect = new Vector3(0, Input.GetAxis("Horizontal"), 0);
             rotVect *= rotationSpeed * Time.deltaTime;
         }
+        return rotVect;
+    }
+
+        private Vector3 CalcMovement()
+    {
+        bool isShiftKeyDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        float x_move = 0.0f;
+        float z_move = Input.GetAxis("Vertical");
+
+        if (isShiftKeyDown)
+        {
+            x_move = Input.GetAxis("Horizontal");
+        }
+
+        Vector3 moveVect = new Vector3(x_move, 0, z_move);
+        moveVect *= movementSpeed * Time.deltaTime;
+
+        return moveVect;
     }
 }
