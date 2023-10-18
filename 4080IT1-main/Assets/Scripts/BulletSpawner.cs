@@ -8,12 +8,11 @@ public class BulletSpawner : NetworkBehaviour
     public Rigidbody BulletPrefab;
     private float bulletSpeed = 20f;
 
-    [ServerRpc]
-    public void FireServerRpc(ServerRpcParams rpcParams = default) {
+[ServerRpc]
+    public void FireServerRpc() {
         Rigidbody newBullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
         newBullet.velocity = transform.forward * bulletSpeed;
-        newBullet.gameObject.GetComponent<NetworkObject>().SpawnWithOwnership(
-            rpcParams.Receive.SenderClientId);
+        newBullet.gameObject.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.LocalClientId);
         Destroy(newBullet.gameObject, 3);
     }
 }

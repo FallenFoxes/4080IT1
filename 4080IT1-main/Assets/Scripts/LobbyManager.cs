@@ -14,7 +14,7 @@ public class LobbyManager : NetworkBehaviour
     void Start()
     {
         startButton.gameObject.SetActive(false);
-        statusLabel.text = "(Start the host or client...)";
+        statusLabel.text = "Start the host or client";
 
 
         startButton.onClick.AddListener(OnStartButtonClicked);
