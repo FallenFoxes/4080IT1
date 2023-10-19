@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class BasePowerUp : NetworkBehaviour
+public abstract class BasePowerUp : NetworkBehaviour
 {
     public void ServerPickUp(Player thePickerUpper) {
         if(IsServer)
         {
+            if (ApplyToPlayer(thePickerUpper)){
             GetComponent<NetworkObject>().Despawn();
+            }
         }
     }
+
+    protected abstract bool ApplyToPlayer(Player thePickerUpper);
 }
  

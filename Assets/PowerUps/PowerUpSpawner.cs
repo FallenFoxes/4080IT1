@@ -12,7 +12,10 @@ public class PowerUpSpawner : NetworkBehaviour {
     private float timeSinceDespawn = 0f;
 
     private void Start() {
-        SpawnPowerUp();
+        if (IsServer){
+            SpawnPowerUp();
+
+        }
     }
 
     private void Update () {
