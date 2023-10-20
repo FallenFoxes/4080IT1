@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class NetworkHandler : NetworkBehaviour
 {
-    private void Start()
+     void Start()
     {
         NetworkManager.OnClientStarted += OnClientStarted;
         NetworkManager.OnServerStarted += OnServerStarted;

@@ -13,22 +13,15 @@ public class LobbyManager : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startButton.gameObject.SetActive(false);
-        statusLabel.text = "Start the host or client";
-
-
         startButton.onClick.AddListener(OnStartButtonClicked);
         NetworkManager.OnClientStarted += OnClientStarted;
         NetworkManager.OnServerStarted += OnServerStarted;
+
+        startButton.gameObject.SetActive(false);
+        statusLabel.text = "Start Client/Server/Host";
     }
 
-    private void OnServerStarted()
-    {
-        startButton.gameObject.SetActive(true);
-        statusLabel.text = "Press Start";
-    }
-
-    private void OnClientStarted()
+        private void OnClientStarted()
     {
         if (!IsHost)
         {
@@ -36,11 +29,20 @@ public class LobbyManager : NetworkBehaviour
         }
     }
 
+    private void OnServerStarted()
+    {
+        GoToLobby();
+    }
     private void OnStartButtonClicked()
     {
         StartGame();
     }
 
+    public void GoToLobby() {
+        NetworkManager.SceneManager.LoadScene(
+            "Lobby",
+            UnityEngine.SceneManagement.LoadSceneMode.Single);
+    }
     public void StartGame()
     {
         NetworkManager.SceneManager.LoadScene(
