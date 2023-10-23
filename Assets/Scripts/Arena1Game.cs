@@ -18,14 +18,6 @@ public class Arena1Game : NetworkBehaviour
         new Vector3(0, 2, -4)
     };
 
-    private int colorIndex = 0;
-    private Color[] playerColors = new Color[] {
-        Color.blue,
-        Color.green,
-        Color.yellow,
-        Color.magenta,
-    };
-
     void Start()
     {
         arenaCamera.enabled = !IsClient;
@@ -47,19 +39,6 @@ public class Arena1Game : NetworkBehaviour
         return pos;
     }
 
-
-    private Color NextColor()
-    {
-        Color newColor = playerColors[colorIndex];
-        colorIndex += 1;
-        if (colorIndex > playerColors.Length - 1)
-        {
-            colorIndex = 0;
-        }
-        return newColor;
-    }
-
-
     private void SpawnPlayers()
     {
         foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
@@ -75,7 +54,7 @@ public class Arena1Game : NetworkBehaviour
                     NextPosition(), 
                     Quaternion.identity);
             playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
-            playerSpawn.PlayerColor.Value = NextColor();
+            //playerSpawn.PlayerColor.Value = NextColor();
         }
     }
 }

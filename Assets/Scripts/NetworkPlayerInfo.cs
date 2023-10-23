@@ -21,6 +21,7 @@ public struct NetworkPlayerInfo : INetworkSerializable, System.IEquatable<Networ
         serializer.SerializeValue(ref clientId);
         serializer.SerializeValue(ref ready);
         serializer.SerializeValue(ref color);
+        serializer.SerializeValue(ref playerName);
 
 
 }

@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.bitwes.multirun": {
+      "version": "file:C:/Users/mcclimge1/Downloads/MultiRun-main (1)/MultiRun-main/Packages/MultiRun",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.6.6",
       "depth": 2,
