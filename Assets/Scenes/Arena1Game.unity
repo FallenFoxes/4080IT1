@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpSpawner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 567400077288040616, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e747606a9c26ec498dfcf155b740c53, type: 2}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -216,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -54.15954
+      value: -74.24
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -352,7 +356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819505183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 65, z: 0}
+  m_LocalPosition: {x: 0, y: 45, z: 0}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,7 +440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822026206}
   m_LocalRotation: {x: 0.102330334, y: -0, z: -0, w: 0.99475056}
-  m_LocalPosition: {x: -1.79, y: 16.96, z: -44.08}
+  m_LocalPosition: {x: -15.8, y: 73.2, z: -108.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -488,11 +492,15 @@ PrefabInstance:
     - target: {fileID: 84682621260658361, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: powerUp
       value: 
-      objectReference: {fileID: 7023915396293611489, guid: 2ee105526f55acd42a80d94c38b36ff3, type: 3}
+      objectReference: {fileID: 1388287412867312336, guid: be8c182129edec542ae3d0a0c095eb4d, type: 3}
     - target: {fileID: 378498220514991516, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_Name
       value: PowerUpSpawner (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 567400077288040616, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e747606a9c26ec498dfcf155b740c53, type: 2}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -503,7 +511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -54.15954
+      value: -74.24
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -563,6 +571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 567400077288040616, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e747606a9c26ec498dfcf155b740c53, type: 2}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -573,7 +585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -54.15954
+      value: -74.24
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -727,6 +739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUpSpawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 567400077288040616, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e747606a9c26ec498dfcf155b740c53, type: 2}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -737,7 +753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -54.15954
+      value: -74.24
       objectReference: {fileID: 0}
     - target: {fileID: 679952737134738333, guid: 868a09fbc634c224ca9f0fc8721399e9, type: 3}
       propertyPath: m_LocalPosition.z

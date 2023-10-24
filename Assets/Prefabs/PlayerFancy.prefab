@@ -642,7 +642,7 @@ MonoBehaviour:
     m_InternalValue: {r: 1, g: 0, b: 0, a: 1}
   ScoreNetVar:
     m_InternalValue: 0
-  bulletSpawner: {fileID: 0}
+  bulletSpawner: {fileID: 1613354662599110442}
   movementSpeed: 50
 --- !u!114 &6263622483069349609
 MonoBehaviour:

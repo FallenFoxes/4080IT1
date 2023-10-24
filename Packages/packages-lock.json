@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "com.bitwes.multirun": {
-      "version": "file:C:/Users/mcclimge1/Downloads/MultiRun-main (1)/MultiRun-main/Packages/MultiRun",
+      "version": "https://github.com/ProfButch/MultiRun.git?path=Packages/MultiRun",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "ae914d632beb37d3e4125920dd9dfb3149040cf2"
     },
     "com.unity.burst": {
       "version": "1.6.6",
