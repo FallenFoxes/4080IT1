@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.bitwes.multirun": "https://github.com/ProfButch/MultiRun.git?path=Packages/MultiRun",
+    "com.bitwes.multirun": "file:C:/Users/Capta/Downloads/MultiRun-main/MultiRun-main/Packages/MultiRun",
     "com.unity.collab-proxy": "2.0.7",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.25",

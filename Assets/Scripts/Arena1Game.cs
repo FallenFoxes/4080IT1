@@ -9,8 +9,6 @@ public class Arena1Game : NetworkBehaviour
     public Player playerHost;
     public Camera arenaCamera;
 
-    private NetworkedPlayers networkedPlayers;
-
     private int positionIndex = 0;
     private Vector3[] startPositions = new Vector3[]
     {
@@ -24,10 +22,6 @@ public class Arena1Game : NetworkBehaviour
     {
         arenaCamera.enabled = !IsClient;
         arenaCamera.GetComponent<AudioListener>().enabled = !IsClient;
-        
-        networkedPlayers = GameObject.Find("NetworkedPlayers").GetComponent<NetworkedPlayers>();
-        NetworkHelper.Log($"Players = {networkedPlayers.allNetPlayers.Count}");
-        
         if (IsServer)
         {
             SpawnPlayers();
@@ -47,15 +41,20 @@ public class Arena1Game : NetworkBehaviour
 
     private void SpawnPlayers()
     {
-        foreach (NetworkPlayerInfo info in networkedPlayers.allNetPlayers)
+        foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
         {
             Player playerPrefabToSpawn = clientPrefab;
+            if (NetworkManager.LocalClientId == clientId)
+            {
+                playerPrefabToSpawn = playerHost;
+            }
+
                 Player playerSpawn = Instantiate(
                     playerPrefabToSpawn, 
                     NextPosition(), 
                     Quaternion.identity);
-            playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(info.clientId);
-            playerSpawn.PlayerColor.Value = info.color;
+            playerSpawn.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
+            //playerSpawn.PlayerColor.Value = NextColor();
         }
     }
 }

@@ -14,6 +14,7 @@ public class PowerUpSpawner : NetworkBehaviour {
     private void Start() {
         if (IsServer){
             SpawnPowerUp();
+
         }
     }
 
@@ -24,17 +25,19 @@ public class PowerUpSpawner : NetworkBehaviour {
     }
 
     private void ServerHandlePowerUpRespawn() {
-        if(spawnedPowerUp == null) {
+        if(spawnedPowerUp == null)
+        {
             timeSinceDespawn += Time.deltaTime;
-
-            if (timeSinceDespawn >= spawnDelay) {
+            if (timeSinceDespawn >= spawnDelay)
+            {
                 SpawnPowerUp();
                 timeSinceDespawn = 0f;
             }
         }
     }
     public void SpawnPowerUp() {
-        if (!powerUp) {
+        if (!powerUp)
+        {
             return;
         }
 
